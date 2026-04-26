@@ -323,69 +323,78 @@ function Hero() {
   const opacity = useTransform(scrollY, [0, 520], [1, 0.2]);
 
   return (
-    <section id="top" className="relative min-h-screen overflow-hidden bg-black text-white">
+    <section
+      id="top"
+      className="relative min-h-[100svh] overflow-hidden bg-black text-white"
+    >
       {/* FULLSCREEN VIDEO */}
       <motion.div style={{ y, opacity }} className="absolute inset-0">
-        <video
-          className="h-full w-full object-cover"
-          src="/hero-video.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="auto"
-        />
+       <video
+  className="h-full w-full bg-black object-contain md:object-cover"
+  src="/hero-video.mp4"
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+/>
 
         {/* DARK OVERLAY */}
-        <div className="absolute inset-0 bg-black/0" />
+        <div className="pointer-events-none absolute inset-0 bg-black/35 md:bg-black/25" />
 
         {/* BOTTOM GRADIENT */}
-        <div className="absolute inset-x-0 bottom-0 h-50 bg-gradient-to-t from-black via-black/60 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-80 bg-gradient-to-t from-black via-black/60 to-transparent md:h-96" />
 
         {/* LEFT GRADIENT FOR TEXT READABILITY */}
-        <div className="absolute inset-y-0 left-0 w-full bg-gradient-to-r from-black/85 via-black/45 to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 w-full bg-gradient-to-r from-black/90 via-black/45 to-transparent md:from-black/85 md:via-black/35" />
       </motion.div>
 
       {/* HERO CONTENT */}
-      <div className="relative z-10 mx-auto flex min-h-screen max-w-7xl items-center px-5 pt-24 md:items-end md:px-8 md:pb-32 lg:pb-20">
-  <div className="max-w-5xl md:max-w-4xl">  
-        
+      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-7xl items-center px-5 pt-24 md:items-end md:px-8 md:pb-32 lg:pb-40">
+        <div className="max-w-5xl md:max-w-4xl lg:-translate-x-6">
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.65 }}
+            className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-black/35 px-4 py-2 text-sm text-zinc-300 backdrop-blur"
+          >
+            <Sparkles className="h-4 w-4 text-white" />
+            Interiéry • vizualizácie • Unreal Engine prehliadky
+          </motion.div>
 
           <motion.h1
-  initial={{ opacity: 0, y: 28 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.75, delay: 0.08 }}
-  className="text-5xl font-black leading-[0.9] tracking-[-0.055em] text-white md:text-6xl lg:text-7xl"
->
-  Interiér  nie je len
-  <br />
-"pekný obrázok"
-</motion.h1>
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.08 }}
+            className="text-4xl font-black leading-[0.9] tracking-[-0.055em] text-white sm:text-5xl md:text-6xl lg:text-7xl"
+          >
+            Interiér
+            <br />
+            nie je obrázok.
+          </motion.h1>
 
-<motion.p
-  initial={{ opacity: 0, y: 24 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.75, delay: 0.16 }}
-  className="mt-7 max-w-2xl text-lg leading-8 text-zinc-300 md:text-xl"
->
-  Navrhujeme interiéry, vizualizácie a interaktívne prehliadky,
-  <br />
-  ktoré z priestoru spravia jasné rozhodnutie ešte pred realizáciou.
-</motion.p>
-
-
+          <motion.p
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.16 }}
+            className="mt-6 max-w-2xl text-base leading-7 text-zinc-300 sm:text-lg md:text-xl md:leading-8"
+          >
+            Navrhujeme interiéry, vizualizácie a interaktívne prehliadky,
+            <br className="hidden md:block" /> ktoré z priestoru spravia jasné
+            rozhodnutie ešte pred realizáciou.
+          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, delay: 0.24 }}
-            className="mt-9 flex flex-col gap-4 sm:flex-row"
+            className="mt-8 flex flex-col gap-4 sm:flex-row"
           >
             <MagneticButton>Chcem navrhnúť projekt</MagneticButton>
 
             <a
               href="#portfolio"
-              className="group inline-flex items-center justify-center gap-3 rounded-full border border-white/20 bg-black/30 px-6 py-3 text-sm font-semibold tracking-wide text-white backdrop-blur transition hover:bg-white hover:text-black"
+              className="group inline-flex items-center justify-center gap-3 rounded-full border border-white/20 bg-black/30 px-6 py-3 text-sm font-semibold tracking-wide text-white backdrop-blur transition hover:bg-white hover:text-black sm:justify-start"
             >
               Pozrieť portfólio
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -394,10 +403,17 @@ function Hero() {
         </div>
       </div>
 
+      {/* TECHNICAL SIGNATURE */}
+      <div className="pointer-events-none absolute bottom-10 right-8 z-10 hidden text-right text-[10px] uppercase tracking-[0.24em] text-white/45 md:block">
+        <div>UE WALKTHROUGH / 01</div>
+        <div className="mt-2">Real-time interior presentation</div>
+        <div className="mt-2">Mobile • Tablet • Desktop</div>
+      </div>
+
       {/* SCROLL INDICATOR */}
       <a
         href="#services"
-        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-zinc-400 transition hover:text-white"
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-zinc-400 transition hover:text-white md:bottom-8"
       >
         <ChevronDown className="h-7 w-7 animate-bounce" />
       </a>
